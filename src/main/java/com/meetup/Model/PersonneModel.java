@@ -34,7 +34,7 @@ public class PersonneModel {
         this.name = name;
         this.surname = surname;
         this.email = email;
-        this.gender = gender;z
+        this.gender = gender;
 
     }
 
