@@ -5,7 +5,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 
 @Entity
-@Table(name="EVENTS")
+@Table(name="Events")
 @EntityListeners(AuditingEntityListener.class)
 public class Events {
 
@@ -17,13 +17,21 @@ public class Events {
     @Column(name="TITLE", nullable = true, length = 255)
     private String title;
 
-    @Column(name="DESC", nullable = true, length = 255)
+    @Column(name="DESCRIPTION", nullable = true, length = 255)
     private String description;
 
     @Column(name="MESSAGES", nullable = true, length = 255)
     private String message;
 
     private String date;
+
+    @ManyToOne
+    @JoinColumn(name="groupe_id")
+    private Groupe groupe;
+
+    @ManyToOne
+    @JoinColumn(name="pers_id")
+    private PersonneModel personneModel;
 
     public Events() {}
 

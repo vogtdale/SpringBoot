@@ -4,11 +4,11 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 
-
 @Entity
-@Table(name="GENRE")
+@Table(name="Genres")
 @EntityListeners(AuditingEntityListener.class)
 public class Genre {
+
     @Column(name="ID")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,7 +17,7 @@ public class Genre {
     @Column(name="TITLE", nullable = true, length = 255)
     private String title;
 
-    @Column(name="DESC", nullable = true, length = 255)
+    @Column(name="DESCRIPTION", nullable = true, length = 255)
     private String description;
 
     public Genre() {}

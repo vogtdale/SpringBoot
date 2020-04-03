@@ -3,6 +3,8 @@ package com.meetup.Model;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="PersMeetup")
@@ -25,7 +27,9 @@ public class PersonneModel {
     @Column (name="GENDER",nullable = true,length=1)
     private String gender;
 
-
+    @ManyToMany
+    @JoinColumn(name="groupe_id")
+    private List<Groupe> groupe;
 
     public PersonneModel() {}
 

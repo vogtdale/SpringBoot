@@ -4,8 +4,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 
+
 @Entity
-@Table(name="GROUPE")
+@Table(name="Groups")
 @EntityListeners(AuditingEntityListener.class)
 public class Groupe {
 
@@ -17,7 +18,9 @@ public class Groupe {
     @Column(name="TITLE", nullable = true, length = 255)
     private String title;
 
-
+    @ManyToOne
+    @JoinColumn(name="genres_id")
+    private Genre genre;
 
     public Groupe() {}
 
