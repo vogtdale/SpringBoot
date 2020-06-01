@@ -21,6 +21,9 @@ public class Genre {
     @Column(name="DESCRIPTION", nullable = true, length = 255)
     private String description;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "genre_id", referencedColumnName = "ID")
+    private List<Groupe> groupe;
 
     public Genre() {}
 
@@ -54,5 +57,11 @@ public class Genre {
         this.description = description;
     }
 
+    public List<Groupe> getGroupe() {
+        return groupe;
+    }
 
+    public void setGroupe(List<Groupe> groupe) {
+        this.groupe = groupe;
+    }
 }

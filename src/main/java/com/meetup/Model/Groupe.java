@@ -23,9 +23,6 @@ public class Groupe {
     @JoinColumn(name="events_Id", referencedColumnName = "Groupe_Id" )
     private List<Events> events;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="genres_id")
-    private Genre genre;
 
     public Groupe() {}
 
@@ -51,13 +48,6 @@ public class Groupe {
         this.title = title;
     }
 
-    public Genre getGenre() {
-        return genre;
-    }
-
-    public void setGenre(Genre genre) {
-        this.genre = genre;
-    }
 
     public List<Events> getEvents() {
         return events;
