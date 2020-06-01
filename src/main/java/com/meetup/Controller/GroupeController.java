@@ -28,7 +28,7 @@ public class GroupeController {
 
     @GetMapping("/groupe/{id}")
     public Groupe getGroupes(@PathVariable int id) {
-        return (Groupe) this.groupeService.findGroupes(id);
+        return this.groupeService.findGroupes(id);
     }
 
 

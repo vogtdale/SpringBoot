@@ -37,7 +37,7 @@ public class MeetupController {
 
     @GetMapping("/user/{id}")
     public PersonneModel getUsr(@PathVariable int id) {
-        return (PersonneModel) this.persService.findPers(id);
+        return this.persService.findPers(id);
     }
 
 

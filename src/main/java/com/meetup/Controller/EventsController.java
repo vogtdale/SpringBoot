@@ -28,7 +28,7 @@ public class EventsController {
 
     @GetMapping("/events/{id}")
     public Events getEvt(@PathVariable int id) {
-        return (Events) this.eventsService.findbyId(id);
+        return this.eventsService.findbyId(id);
     }
 
 

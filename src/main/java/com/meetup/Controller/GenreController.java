@@ -28,7 +28,7 @@ public class GenreController {
 
     @GetMapping("/genre/{id}")
     public Genre getEvt(@PathVariable int id) {
-        return (Genre) this.genreService.findbyId(id);
+        return this.genreService.findbyId(id);
     }
 
 

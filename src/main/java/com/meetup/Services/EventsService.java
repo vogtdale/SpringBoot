@@ -15,13 +15,6 @@ public class EventsService {
     EventsDao eventsDao;
 
     /*List All Memebers of the a group*/
-    public List<Events> getAll() {
-        return this.eventsDao.findAll();
-    }
-
-    public Events addPers(Events events) {
-        return this.eventsDao.save(events);
-    }
 
     public Events findbyId(Integer id) {
         return this.eventsDao.findById(id).get();

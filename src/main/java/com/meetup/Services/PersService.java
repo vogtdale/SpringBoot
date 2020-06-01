@@ -14,13 +14,7 @@ public class PersService {
     UserRepository userRepository;
 
     /*List All Memebers of the a group*/
-    public List<PersonneModel> getAll() {
-        return this.userRepository.findAll();
-    }
 
-    public PersonneModel addPers(PersonneModel personneModel) {
-        return this.userRepository.save(personneModel);
-    }
 
     public PersonneModel findPers(Integer id) {
         return this.userRepository.findById(id).get();

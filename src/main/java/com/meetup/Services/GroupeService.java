@@ -16,13 +16,6 @@ public class GroupeService {
     GroupeDao groupeDao;
 
     /*List ts les group*/
-    public List<Groupe> getAll() {
-        return this.groupeDao.findAll();
-    }
-
-    public Groupe addGropues(Groupe events) {
-        return this.groupeDao.save(events);
-    }
 
     public Groupe findGroupes(Integer id) {
         return this.groupeDao.findById(id).get();

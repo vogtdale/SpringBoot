@@ -14,13 +14,7 @@ public class GenreService {
     GenreDao genreDao;
 
     /*List All Genres*/
-    public List<Genre> getAll() {
-        return this.genreDao.findAll();
-    }
 
-    public Genre addGenre(Genre genre) {
-        return this.genreDao.save(genre);
-    }
 
     public Genre findbyId(Integer id) {
         return this.genreDao.findById(id).get();
