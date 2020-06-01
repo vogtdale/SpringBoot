@@ -27,8 +27,6 @@ public class Groupe {
     @JoinColumn(name="genres_id")
     private Genre genre;
 
-
-
     public Groupe() {}
 
     public Groupe(Integer id, String title, String description) {
@@ -61,5 +59,5 @@ public class Groupe {
         this.genre = genre;
     }
 
-    
+
 }

@@ -24,7 +24,7 @@ public class Genre {
     private String description;
 
     @OneToMany(mappedBy = "genre")
-    private Set<Groupe> groupes = new HashSet<>();
+    private Set<Groupe> groupes;
 
     public Genre() {}
 
