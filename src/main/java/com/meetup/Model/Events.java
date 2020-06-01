@@ -10,7 +10,7 @@ import java.util.Date;
 @EntityListeners(AuditingEntityListener.class)
 public class Events {
 
-    @Column(name="ID")
+    @Column(name="Events_Id")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -26,16 +26,6 @@ public class Events {
 
     @Temporal(TemporalType.DATE)
     Date date;
-
-
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name="groupe_id")
-    private Groupe groupe;
-
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="pers_id")
-    private PersonneModel personneModel;
 
     public Events() {}
 

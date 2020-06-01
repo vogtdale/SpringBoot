@@ -55,6 +55,10 @@ public class PersonneModel {
     @JoinColumn(name = "groupe_id")
     private List<Groupe> groupe;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "Events_id", referencedColumnName = "ID")
+    private List<Events> events;
+
     public PersonneModel() {
     }
 
@@ -128,5 +132,13 @@ public class PersonneModel {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public List<Events> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Events> events) {
+        this.events = events;
     }
 }

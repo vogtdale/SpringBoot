@@ -11,13 +11,17 @@ import java.util.List;
 @EntityListeners(AuditingEntityListener.class)
 public class Groupe {
 
-    @Column(name="ID")
+    @Column(name="Groupe_Id")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(name="TITLE", nullable = true, length = 255)
     private String title;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="events_Id", referencedColumnName = "Groupe_Id" )
+    private List<Events> events;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="genres_id")
@@ -53,5 +57,13 @@ public class Groupe {
 
     public void setGenre(Genre genre) {
         this.genre = genre;
+    }
+
+    public List<Events> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Events> events) {
+        this.events = events;
     }
 }
