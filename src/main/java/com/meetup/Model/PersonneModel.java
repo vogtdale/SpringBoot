@@ -51,8 +51,10 @@ public class PersonneModel {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    @ManyToMany
-    @JoinColumn(name = "groupe_id")
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_groupe",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "groupe_id"))
     private List<Groupe> groupe;
 
     @OneToMany(cascade = CascadeType.ALL)
@@ -134,6 +136,14 @@ public class PersonneModel {
         this.roles = roles;
     }
 
+    public List<Groupe> getGroupe() {
+        return groupe;
+    }
+
+    public void setGroupe(List<Groupe> groupe) {
+        this.groupe = groupe;
+    }
+
     public List<Events> getEvents() {
         return events;
     }
@@ -142,11 +152,5 @@ public class PersonneModel {
         this.events = events;
     }
 
-    public List<Groupe> getGroupe() {
-        return groupe;
-    }
 
-    public void setGroupe(List<Groupe> groupe) {
-        this.groupe = groupe;
-    }
 }
