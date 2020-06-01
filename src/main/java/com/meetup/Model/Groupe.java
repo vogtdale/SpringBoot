@@ -20,7 +20,7 @@ public class Groupe {
     private String title;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="events_Id", referencedColumnName = "Groupe_Id" )
+    @JoinColumn(name="events_Id", referencedColumnName = "Events_Id" )
     private List<Events> events;
 
 
