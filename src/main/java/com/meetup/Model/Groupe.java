@@ -23,11 +23,11 @@ public class Groupe {
     @Column(name="TITLE", nullable = true, length = 255)
     private String title;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="genres_id")
     private Genre genre;
 
-    
+
 
     public Groupe() {}
 
@@ -61,11 +61,5 @@ public class Groupe {
         this.genre = genre;
     }
 
-    public Set<Events> getEvents() {
-        return events;
-    }
-
-    public void setEvents(Set<Events> events) {
-        this.events = events;
-    }
+    
 }
