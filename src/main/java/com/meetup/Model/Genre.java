@@ -23,8 +23,6 @@ public class Genre {
     @Column(name="DESCRIPTION", nullable = true, length = 255)
     private String description;
 
-    @OneToMany(mappedBy = "genre")
-    private Set<Groupe> groupes;
 
     public Genre() {}
 
@@ -58,11 +56,5 @@ public class Genre {
         this.description = description;
     }
 
-    public Set<Groupe> getGroupes() {
-        return groupes;
-    }
 
-    public void setGroupes(Set<Groupe> groupes) {
-        this.groupes = groupes;
-    }
 }
