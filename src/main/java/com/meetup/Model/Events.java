@@ -4,6 +4,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="Events")
@@ -26,6 +27,10 @@ public class Events {
 
     @Temporal(TemporalType.DATE)
     Date date;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="events_Id", referencedColumnName = "Events_Id" )
+    private List<Groupe> groupes;
 
     public Events() {}
 
@@ -75,5 +80,13 @@ public class Events {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public List<Groupe> getGroupes() {
+        return groupes;
+    }
+
+    public void setGroupes(List<Groupe> groupes) {
+        this.groupes = groupes;
     }
 }

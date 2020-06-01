@@ -19,11 +19,6 @@ public class Groupe {
     @Column(name="TITLE", nullable = true, length = 255)
     private String title;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="events_Id", referencedColumnName = "Events_Id" )
-    private List<Events> events;
-
-
     public Groupe() {}
 
     public Groupe(Integer id, String title, String description) {
@@ -48,12 +43,4 @@ public class Groupe {
         this.title = title;
     }
 
-
-    public List<Events> getEvents() {
-        return events;
-    }
-
-    public void setEvents(List<Events> events) {
-        this.events = events;
-    }
 }
