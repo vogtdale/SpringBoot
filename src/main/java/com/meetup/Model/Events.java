@@ -102,4 +102,5 @@ public class Events {
     public void setPersonneModel(PersonneModel personneModel) {
         this.personneModel = personneModel;
     }
+
 }

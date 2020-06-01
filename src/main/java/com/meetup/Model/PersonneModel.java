@@ -57,6 +57,9 @@ public class PersonneModel {
     @JoinColumn(name = "groupe_id")
     private List<Groupe> groupe;
 
+    @OneToMany(mappedBy = "personneModel")
+    private Set<Events> events = new HashSet<>();
+
     public PersonneModel() {
     }
 
@@ -140,6 +143,11 @@ public class PersonneModel {
         this.groupe = groupe;
     }
 
+    public Set<Events> getEvents() {
+        return events;
+    }
 
-
+    public void setEvents(Set<Events> events) {
+        this.events = events;
+    }
 }

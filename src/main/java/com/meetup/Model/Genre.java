@@ -3,7 +3,9 @@ package com.meetup.Model;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="Genres")
@@ -21,6 +23,8 @@ public class Genre {
     @Column(name="DESCRIPTION", nullable = true, length = 255)
     private String description;
 
+    @OneToMany(mappedBy = "genre")
+    private Set<Groupe> groupes = new HashSet<>();
 
     public Genre() {}
 
@@ -54,5 +58,11 @@ public class Genre {
         this.description = description;
     }
 
+    public Set<Groupe> getGroupes() {
+        return groupes;
+    }
 
+    public void setGroupes(Set<Groupe> groupes) {
+        this.groupes = groupes;
+    }
 }
