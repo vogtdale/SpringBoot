@@ -1,7 +1,5 @@
 package com.meetup.Model;
 
-import com.fasterxml.jackson.annotation.JsonView;
-import com.meetup.views.MyJsonView;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -15,35 +13,29 @@ public class Events {
     @Column(name="ID")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonView({MyJsonView.Events.class})
+    
     private Integer id;
 
     @Column(name="TITLE", nullable = true, length = 255)
-    @JsonView({MyJsonView.Events.class})
     private String title;
 
     @Column(name="DESCRIPTION", nullable = true, length = 255)
-    @JsonView({MyJsonView.Events.class})
     private String description;
 
     @Column(name="MESSAGES", nullable = true, length = 255)
-    @JsonView({MyJsonView.Events.class})
     private String message;
 
     @Temporal(TemporalType.DATE)
-    @JsonView({MyJsonView.Events.class})
     Date date;
 
 
     @ManyToOne
     @JoinColumn(name="groupe_id")
-    @JsonView({MyJsonView.Events.class})
     private Groupe groupe;
     
 
     @ManyToOne
     @JoinColumn(name="pers_id")
-    @JsonView({MyJsonView.Events.class})
     private PersonneModel personneModel;
 
     public Events() {}
@@ -111,6 +103,5 @@ public class Events {
     public void setPersonneModel(PersonneModel personneModel) {
         this.personneModel = personneModel;
     }
-
 
 }

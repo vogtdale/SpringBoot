@@ -23,6 +23,8 @@ public class Genre {
     @Column(name="DESCRIPTION", nullable = true, length = 255)
     private String description;
 
+    @OneToMany(mappedBy = "genre")
+    private Set<Groupe> groupes = new HashSet<>();
 
     public Genre() {}
 
@@ -55,6 +57,7 @@ public class Genre {
     public void setDescription(String description) {
         this.description = description;
     }
+
 
 
 }
