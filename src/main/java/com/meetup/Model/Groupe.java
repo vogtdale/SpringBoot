@@ -23,7 +23,7 @@ public class Groupe {
     @Column(name="TITLE", nullable = true, length = 255)
     private String title;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="genres_id")
     private Genre genre;
 
@@ -58,6 +58,7 @@ public class Groupe {
     public void setGenre(Genre genre) {
         this.genre = genre;
     }
+
 
 
 }
