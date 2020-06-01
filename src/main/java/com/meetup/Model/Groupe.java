@@ -1,5 +1,7 @@
 package com.meetup.Model;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.meetup.views.MyJsonView;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -28,6 +30,7 @@ public class Groupe {
 
 
     @OneToMany(mappedBy = "groupe")
+    @JsonView({MyJsonView.Events.class})
     private Set<Events> events = new HashSet<>();
 
 
