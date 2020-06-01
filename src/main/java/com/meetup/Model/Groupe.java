@@ -27,12 +27,7 @@ public class Groupe {
     @JoinColumn(name="genres_id")
     private Genre genre;
 
-
-
-    @OneToMany(mappedBy = "groupe")
-    @JsonView({MyJsonView.Events.class})
-    private Set<Events> events = new HashSet<>();
-
+    
 
     public Groupe() {}
 
