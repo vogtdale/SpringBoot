@@ -3,6 +3,7 @@ package com.meetup.Model;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name="Events")
@@ -23,19 +24,22 @@ public class Events {
     @Column(name="MESSAGES", nullable = true, length = 255)
     private String message;
 
-    private String date;
+    @Temporal(TemporalType.DATE)
+    Date date;
 
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name="groupe_id")
     private Groupe groupe;
+    
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="pers_id")
     private PersonneModel personneModel;
 
     public Events() {}
 
-    public Events(Integer id, String title, String description, String message, String date) {
+    public Events(Integer id, String title, String description, String message, Date date) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -75,11 +79,27 @@ public class Events {
         this.message = message;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Groupe getGroupe() {
+        return groupe;
+    }
+
+    public void setGroupe(Groupe groupe) {
+        this.groupe = groupe;
+    }
+
+    public PersonneModel getPersonneModel() {
+        return personneModel;
+    }
+
+    public void setPersonneModel(PersonneModel personneModel) {
+        this.personneModel = personneModel;
     }
 }

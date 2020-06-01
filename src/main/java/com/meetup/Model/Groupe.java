@@ -3,6 +3,7 @@ package com.meetup.Model;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -18,7 +19,7 @@ public class Groupe {
     @Column(name="TITLE", nullable = true, length = 255)
     private String title;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="genres_id")
     private Genre genre;
 
@@ -46,5 +47,11 @@ public class Groupe {
         this.title = title;
     }
 
+    public Genre getGenre() {
+        return genre;
+    }
 
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
 }

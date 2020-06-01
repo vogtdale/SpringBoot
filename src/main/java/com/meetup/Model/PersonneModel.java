@@ -1,44 +1,78 @@
 package com.meetup.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="PersMeetup")
+@Table(name = "users",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = "username"),
+                @UniqueConstraint(columnNames = "email")}
+)
 @EntityListeners(AuditingEntityListener.class)
 public class PersonneModel {
-    @Column(name="ID")
+
+    @Column(name = "ID")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(name="NAME", nullable = true, length = 255)
-    private String name;
+    @NotBlank
+    @Size(max = 20)
+    private String username;
 
-    @Column(name="SURNAME", nullable = true, length = 255)
+
+    @NotBlank
+    @Size(max = 120)
+    private String password;
+
+    @NotBlank
+    @Size(max = 20)
     private String surname;
 
-    @Column (name="EMAIL", nullable = true,length = 255)
+    @NotBlank
+    @Size(max = 50)
+    @Email
     private String email;
 
-    @Column (name="GENDER",nullable = true,length=1)
+    @NotBlank
+    @Size(max = 1)
     private String gender;
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(	name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
+
     @ManyToMany
-    @JoinColumn(name="groupe_id")
+    @JoinColumn(name = "groupe_id")
     private List<Groupe> groupe;
 
-    public PersonneModel() {}
+    public PersonneModel() {
+    }
 
-    public PersonneModel(Integer id, String name, String surname, String email, String gender, String psswd) {
+    public PersonneModel( String username,  String password, String email) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
+
+    public PersonneModel(Integer id, String username, String surname, String email, String gender, String password) {
         this.id = id;
-        this.name = name;
+        this.username = username;
         this.surname = surname;
         this.email = email;
         this.gender = gender;
+        this.password = password;
 
     }
 
@@ -50,12 +84,12 @@ public class PersonneModel {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getSurname() {
@@ -81,5 +115,31 @@ public class PersonneModel {
     public void setGender(String gender) {
         this.gender = gender;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public List<Groupe> getGroupe() {
+        return groupe;
+    }
+
+    public void setGroupe(List<Groupe> groupe) {
+        this.groupe = groupe;
+    }
+
+
 
 }

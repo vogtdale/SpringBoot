@@ -1,5 +1,6 @@
 package com.meetup.Controller;
 
+import com.meetup.Dao.UserRepository;
 import com.meetup.Model.PersonneModel;
 import com.meetup.Services.PersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,9 @@ public class MeetupController {
     PersService persService;
 
     @Autowired
+    UserRepository userRepository;
+
+    @Autowired
     public MeetupController(final PersService persService) {
         this.persService = persService;
     }
@@ -20,7 +24,7 @@ public class MeetupController {
 
     @GetMapping("/")
     public String hompePage() {
-        return "HomePage";
+        return "Welcome to meetUpz";
     }
 
     /*******************************************************
@@ -33,14 +37,14 @@ public class MeetupController {
 
     @GetMapping("/user/{id}")
     public PersonneModel getUsr(@PathVariable int id) {
-        return (PersonneModel) this.persService.findAll();
+        return (PersonneModel) this.persService.findPers(id);
     }
 
 
     /*******************************************************
      *                     Add Users
      *******************************************************/
-    @PutMapping("/users")
+    @PutMapping("/users/add")
     public PersonneModel addUsers(@RequestBody PersonneModel persModel) {
         return this.persService.save(persModel);
     }
@@ -50,8 +54,8 @@ public class MeetupController {
     *******************************************************/
 
     @DeleteMapping("/user/{id}")
-    public PersonneModel delete(@RequestBody PersonneModel persModel) {
-        return this.persService.delete(persModel.getId());
+    public void delete(@PathVariable int id) {
+        this.persService.deletepersonne(id);
     }
 
 
