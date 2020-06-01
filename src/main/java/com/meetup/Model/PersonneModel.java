@@ -141,4 +141,12 @@ public class PersonneModel {
     public void setEvents(List<Events> events) {
         this.events = events;
     }
+
+    public List<Groupe> getGroupe() {
+        return groupe;
+    }
+
+    public void setGroupe(List<Groupe> groupe) {
+        this.groupe = groupe;
+    }
 }
