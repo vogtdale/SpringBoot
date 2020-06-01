@@ -28,12 +28,12 @@ public class Events {
     Date date;
 
 
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="groupe_id")
     private Groupe groupe;
     
 
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="pers_id")
     private PersonneModel personneModel;
 

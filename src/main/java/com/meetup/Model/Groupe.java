@@ -23,12 +23,13 @@ public class Groupe {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="genres_id")
+    private Genre genre;
+
 
 
     @OneToMany(mappedBy = "groupe")
     private Set<Events> events = new HashSet<>();
 
-    private Genre genre;
 
     public Groupe() {}
 
