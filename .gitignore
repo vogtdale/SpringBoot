@@ -30,12 +30,6 @@ build/
 ### VS Code ###
 .vscode/
 
-###project
-nbactions.xml
-pom.xml
-src/main/java/com/meetup/MeetupsApplication.java
-src/main/resources/
-src/test/
 
 
 
