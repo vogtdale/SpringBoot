@@ -13,7 +13,6 @@ public class Events {
     @Column(name="ID")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    
     private Integer id;
 
     @Column(name="TITLE", nullable = true, length = 255)
@@ -29,12 +28,12 @@ public class Events {
     Date date;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name="groupe_id")
     private Groupe groupe;
-    
 
-    @ManyToOne
+
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="pers_id")
     private PersonneModel personneModel;
 
@@ -87,21 +86,4 @@ public class Events {
     public void setDate(Date date) {
         this.date = date;
     }
-
-    public Groupe getGroupe() {
-        return groupe;
-    }
-
-    public void setGroupe(Groupe groupe) {
-        this.groupe = groupe;
-    }
-
-    public PersonneModel getPersonneModel() {
-        return personneModel;
-    }
-
-    public void setPersonneModel(PersonneModel personneModel) {
-        this.personneModel = personneModel;
-    }
-
 }

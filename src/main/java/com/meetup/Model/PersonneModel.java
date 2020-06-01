@@ -1,6 +1,5 @@
 package com.meetup.Model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -29,7 +28,6 @@ public class PersonneModel {
     @Size(max = 20)
     private String username;
 
-
     @NotBlank
     @Size(max = 120)
     private String password;
@@ -56,9 +54,6 @@ public class PersonneModel {
     @ManyToMany
     @JoinColumn(name = "groupe_id")
     private List<Groupe> groupe;
-
-    @OneToMany(mappedBy = "personneModel")
-    private Set<Events> events = new HashSet<>();
 
     public PersonneModel() {
     }
@@ -133,21 +128,5 @@ public class PersonneModel {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
-    }
-
-    public List<Groupe> getGroupe() {
-        return groupe;
-    }
-
-    public void setGroupe(List<Groupe> groupe) {
-        this.groupe = groupe;
-    }
-
-    public Set<Events> getEvents() {
-        return events;
-    }
-
-    public void setEvents(Set<Events> events) {
-        this.events = events;
     }
 }

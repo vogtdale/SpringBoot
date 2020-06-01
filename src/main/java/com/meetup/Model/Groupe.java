@@ -1,13 +1,9 @@
 package com.meetup.Model;
 
-import com.fasterxml.jackson.annotation.JsonView;
-import com.meetup.views.MyJsonView;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 
 @Entity
@@ -23,7 +19,7 @@ public class Groupe {
     @Column(name="TITLE", nullable = true, length = 255)
     private String title;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="genres_id")
     private Genre genre;
 
@@ -58,7 +54,4 @@ public class Groupe {
     public void setGenre(Genre genre) {
         this.genre = genre;
     }
-
-
-
 }
