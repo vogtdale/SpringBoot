@@ -58,7 +58,7 @@ public class PersonneModel {
     private List<Groupe> groupe;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "Events_id", referencedColumnName = "ID")
+    @JoinColumn(name = "peid", referencedColumnName = "ID")
     private List<Events> events;
 
     public PersonneModel() {

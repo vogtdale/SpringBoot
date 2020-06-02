@@ -28,9 +28,7 @@ public class Events {
     @Temporal(TemporalType.DATE)
     Date date;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="events_Id", referencedColumnName = "Events_Id" )
-    private List<Groupe> groupes;
+
 
     public Events() {}
 
@@ -82,11 +80,5 @@ public class Events {
         this.date = date;
     }
 
-    public List<Groupe> getGroupes() {
-        return groupes;
-    }
 
-    public void setGroupes(List<Groupe> groupes) {
-        this.groupes = groupes;
-    }
 }
