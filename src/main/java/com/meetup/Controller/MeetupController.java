@@ -1,8 +1,9 @@
 package com.meetup.Controller;
 
 import com.meetup.Dao.UserRepository;
-import com.meetup.Model.PersonneModel;
-import com.meetup.Services.PersService;
+import com.meetup.Model.User;
+import com.meetup.Services.UserDetailsImpl;
+import com.meetup.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,14 +12,14 @@ import java.util.List;
 @CrossOrigin
 @RestController
 public class MeetupController {
-    PersService persService;
+    UserService userService;
 
     @Autowired
     UserRepository userRepository;
 
     @Autowired
-    public MeetupController(final PersService persService) {
-        this.persService = persService;
+    public MeetupController(final UserService userService) {
+        this.userService = userService;
     }
 
 
@@ -31,13 +32,13 @@ public class MeetupController {
      *                      List of Users
      *******************************************************/
     @GetMapping("/user")
-    public List<PersonneModel> showUsers() {
-        return this.persService.findAll();
+    public List<User> showUsers() {
+        return this.userService.findAll();
     }
 
     @GetMapping("/user/{id}")
-    public PersonneModel getUsr(@PathVariable int id) {
-        return this.persService.findPers(id);
+    public User getUsr(@PathVariable int id) {
+        return this.userService.findPers(id);
     }
 
 
@@ -45,8 +46,8 @@ public class MeetupController {
      *                     Add Users
      *******************************************************/
     @PutMapping("/users/add")
-    public PersonneModel addUsers(@RequestBody PersonneModel persModel) {
-        return this.persService.save(persModel);
+    public User addUsers(@RequestBody User persModel) {
+        return this.userService.save(persModel);
     }
 
     /******************************************************
@@ -55,7 +56,7 @@ public class MeetupController {
 
     @DeleteMapping("/user/{id}")
     public void delete(@PathVariable int id) {
-        this.persService.deletepersonne(id);
+        this.userService.deletepersonne(id);
     }
 
 

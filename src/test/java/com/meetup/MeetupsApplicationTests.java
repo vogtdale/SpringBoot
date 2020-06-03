@@ -1,18 +1,13 @@
 package com.meetup;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.meetup.Model.PersonneModel;
-import com.meetup.Model.Role;
-import org.junit.jupiter.api.BeforeAll;
+import com.meetup.Model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -57,7 +52,7 @@ class MeetupsApplicationTests {
 	/*@Test
 	@WithMockUser(username = "admin", roles={"ADMIN"})
 	void contextLoads() throws Exception {
-		PersonneModel personneModel = new PersonneModel();
+		User personneModel = new User();
 		personneModel.setUsername("root");
 		personneModel.setPassword("root");
 		personneModel.setEmail("root@root.fr");
@@ -104,15 +99,15 @@ class MeetupsApplicationTests {
 	@Test
 	void contextLoads() throws Exception {
 
-		PersonneModel personneModel = new PersonneModel();
-		personneModel.setUsername("test2");
-		personneModel.setPassword("test2");
-		personneModel.setEmail("root@root.fr");
-		personneModel.setGender("M");
-		personneModel.setId(50);
-		personneModel.setRoles(personneModel.getRoles());
-		personneModel.setSurname("doe");
-		String json = mapper.writeValueAsString(personneModel);
+		User user = new User();
+		user.setUsername("test2");
+		user.setPassword("test2");
+		user.setEmail("root@root.fr");
+		user.setGender("M");
+		user.setId(50);
+		user.setRoles(user.getRoles());
+		user.setSurname("doe");
+		String json = mapper.writeValueAsString(user);
 
 		mvc.perform(
 				put("/api/auth/signup")

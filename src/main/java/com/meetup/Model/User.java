@@ -17,7 +17,7 @@ import javax.validation.constraints.Size;
                 @UniqueConstraint(columnNames = "email")}
 )
 @EntityListeners(AuditingEntityListener.class)
-public class PersonneModel {
+public class User {
 
     @Column(name = "ID")
     @Id
@@ -61,16 +61,16 @@ public class PersonneModel {
     @JoinColumn(name = "peid", referencedColumnName = "ID")
     private List<Events> events;
 
-    public PersonneModel() {
+    public User() {
     }
 
-    public PersonneModel( String username,  String password, String email) {
+    public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
     }
 
-    public PersonneModel(Integer id, String username, String surname, String email, String gender, String password) {
+    public User(Integer id, String username, String surname, String email, String gender, String password) {
         this.id = id;
         this.username = username;
         this.surname = surname;

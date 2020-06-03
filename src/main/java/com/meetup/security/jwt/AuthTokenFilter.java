@@ -1,6 +1,6 @@
 package com.meetup.security.jwt;
 
-import com.meetup.security.services.UserDetailsServiceImpl;
+import com.meetup.Services.UserDetailsServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

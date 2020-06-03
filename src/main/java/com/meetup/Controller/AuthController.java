@@ -4,28 +4,24 @@ package com.meetup.Controller;
 import com.meetup.Dao.RoleRepository;
 import com.meetup.Dao.UserRepository;
 import com.meetup.Model.ERole;
-import com.meetup.Model.PersonneModel;
+import com.meetup.Model.User;
 import com.meetup.Model.Role;
-import com.meetup.payload.request.LoginRequest;
+import com.meetup.Services.UserDetailsServiceImpl;
 import com.meetup.payload.request.SignupRequest;
-import com.meetup.payload.response.JwtResponse;
 import com.meetup.payload.response.MessageResponse;
 import com.meetup.security.jwt.JwtUtils;
-import com.meetup.security.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -46,25 +42,26 @@ public class AuthController {
     @Autowired
     JwtUtils jwtUtils;
 
+    @Autowired
+    private UserDetailsServiceImpl userDetailsService;
+
     @PostMapping("/signin")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<?> authenticateUser(@RequestBody User user) throws Exception {
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            user.getUsername(), user.getPassword()));
 
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+            final UserDetails userDetails = userDetailsService
+                    .loadUserByUsername(user.getUsername());
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = jwtUtils.generateJwtToken(authentication);
+            return ResponseEntity.ok(jwtUtils.generateJwtToken(userDetails));
 
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        List<String> roles = userDetails.getAuthorities().stream()
-                .map(item -> item.getAuthority())
-                .collect(Collectors.toList());
+        }
+        catch (BadCredentialsException e) {
+            throw new Exception("Pseudo ou mot de passe incorrect", e);
+        }
 
-        return ResponseEntity.ok(new JwtResponse(jwt,
-                userDetails.getId(),
-                userDetails.getUsername(),
-                userDetails.getEmail(),
-                roles));
     }
 
     @PostMapping("/signup")
@@ -82,7 +79,7 @@ public class AuthController {
         }
 
         // Create new user's account
-        PersonneModel user = new PersonneModel(signUpRequest.getUsername(),
+        User user = new User(signUpRequest.getUsername(),
                 signUpRequest.getEmail(),
                 encoder.encode(signUpRequest.getPassword()));
 

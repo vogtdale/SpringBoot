@@ -2,7 +2,6 @@ package com.meetup.Services;
 
 import com.meetup.Dao.EventsDao;
 import com.meetup.Model.Events;
-import com.meetup.Model.PersonneModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

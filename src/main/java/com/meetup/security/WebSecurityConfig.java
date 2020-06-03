@@ -1,9 +1,9 @@
 package com.meetup.security;
 
 
+import com.meetup.Services.UserDetailsServiceImpl;
 import com.meetup.security.jwt.AuthEntryPointJwt;
 import com.meetup.security.jwt.AuthTokenFilter;
-import com.meetup.security.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

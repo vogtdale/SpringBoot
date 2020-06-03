@@ -1,14 +1,14 @@
 package com.meetup.Services;
 
 import com.meetup.Dao.UserRepository;
-import com.meetup.Model.PersonneModel;
+import com.meetup.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class PersService {
+public class UserService {
 
     @Autowired
     UserRepository userRepository;
@@ -16,16 +16,16 @@ public class PersService {
     /*List All Memebers of the a group*/
 
 
-    public PersonneModel findPers(Integer id) {
+    public User findPers(Integer id) {
         return this.userRepository.findById(id).get();
     }
 
-    public List<PersonneModel> findAll() {
+    public List<User> findAll() {
         return this.userRepository.findAll();
     }
 
-    public PersonneModel save(PersonneModel personneModel) {
-        return this.userRepository.save(personneModel);
+    public User save(User user) {
+        return this.userRepository.save(user);
     }
 
     public void deletepersonne(Integer id) {

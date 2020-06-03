@@ -1,8 +1,7 @@
-package com.meetup.security.services;
-
+package com.meetup.Services;
 
 import com.meetup.Dao.UserRepository;
-import com.meetup.Model.PersonneModel;
+import com.meetup.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,10 +18,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        PersonneModel personneModel = userRepository.findByUsername(username)
+        User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
 
-        return UserDetailsImpl.build(personneModel);
+        return UserDetailsImpl.build(user);
     }
 
 }
