@@ -32,16 +32,16 @@ public class User {
     @Size(max = 120)
     private String password;
 
-    @NotBlank
+
     @Size(max = 20)
     private String surname;
 
-    @NotBlank
+
     @Size(max = 50)
     @Email
     private String email;
 
-    @NotBlank
+
     @Size(max = 1)
     private String gender;
 
