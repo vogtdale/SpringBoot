@@ -14,9 +14,9 @@ import javax.validation.constraints.Size;
 @Table(name = "users",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = "username"),
-                @UniqueConstraint(columnNames = "email")}
-)
-@EntityListeners(AuditingEntityListener.class)
+                @UniqueConstraint(columnNames = "email")
+})
+
 public class User {
 
     @Column(name = "ID")
