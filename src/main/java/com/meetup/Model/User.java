@@ -14,7 +14,7 @@ import javax.validation.constraints.*;
                 @UniqueConstraint(columnNames = "username"),
                 @UniqueConstraint(columnNames = "email")
 })
-
+@EntityListeners(AuditingEntityListener.class)
 public class User {
 
     @Column(name = "ID")
