@@ -64,7 +64,7 @@ public class AuthController {
 
     }
 
-    @SuppressWarnings("rawtypes")
+
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody SignupRequest signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {

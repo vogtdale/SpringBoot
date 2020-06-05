@@ -6,9 +6,7 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Entity
 @Table(name = "users",
@@ -57,9 +55,9 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "groupe_id"))
     private List<Groupe> groupe;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    /*@OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "peid", referencedColumnName = "ID")
-    private List<Events> events;
+    private List<Events> events;*/
 
     public User() {
     }
@@ -71,7 +69,6 @@ public class User {
     }
 
     public User(String username, String surname, String email, String gender, String password) {
-        this.id = id;
         this.username = username;
         this.surname = surname;
         this.email = email;
@@ -144,13 +141,13 @@ public class User {
         this.groupe = groupe;
     }
 
-    public List<Events> getEvents() {
+    /*public List<Events> getEvents() {
         return events;
     }
 
     public void setEvents(List<Events> events) {
         this.events = events;
-    }
+    }*/
 
 
 }
