@@ -1,8 +1,6 @@
 package com.meetup.payload.request;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Set;
 
 public class SignupRequest {
@@ -10,7 +8,6 @@ public class SignupRequest {
     @Size(min = 3, max = 20)
     private String username;
 
-    @Size(max = 50)
     private String email;
 
     private Set<String> role;

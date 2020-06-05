@@ -19,9 +19,9 @@ public class Groupe {
     @Column(name="TITLE", nullable = true, length = 255)
     private String title;
 
-    /*@OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="geid", referencedColumnName = "Groupe_Id" )
-    private List<Events> evt;*/
+    private List<Events> evt;
 
     public Groupe() {}
 
@@ -48,11 +48,11 @@ public class Groupe {
     }
 
 
-    /*public List<Events> getEvt() {
+    public List<Events> getEvt() {
         return evt;
     }
 
     public void setEvt(List<Events> evt) {
         this.evt = evt;
-    }*/
+    }
 }

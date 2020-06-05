@@ -34,8 +34,6 @@ public class User {
     @Size(max = 20)
     private String surname;
 
-
-    @Size(max = 50)
     private String email;
 
 
@@ -54,9 +52,9 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "groupe_id"))
     private List<Groupe> groupe;
 
-    /*@OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "peid", referencedColumnName = "ID")
-    private List<Events> events;*/
+    private List<Events> events;
 
     public User() {
     }
@@ -141,13 +139,13 @@ public class User {
         this.groupe = groupe;
     }
 
-    /*public List<Events> getEvents() {
+    public List<Events> getEvents() {
         return events;
     }
 
     public void setEvents(List<Events> events) {
         this.events = events;
-    }*/
+    }
 
 
 }
