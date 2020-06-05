@@ -1,11 +1,12 @@
 package com.meetup.Controller;
 
-
+import com.meetup.payload.request.LoginRequest;
+import com.meetup.payload.response.JwtResponse;
 import com.meetup.Dao.RoleRepository;
 import com.meetup.Dao.UserRepository;
 import com.meetup.Model.ERole;
-import com.meetup.Model.User;
 import com.meetup.Model.Role;
+import com.meetup.Model.User;
 import com.meetup.Services.UserDetailsServiceImpl;
 import com.meetup.payload.request.SignupRequest;
 import com.meetup.payload.response.MessageResponse;
@@ -64,9 +65,8 @@ public class AuthController {
 
     }
 
-
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@RequestBody SignupRequest signUpRequest) {
+    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             return ResponseEntity
                     .badRequest()
