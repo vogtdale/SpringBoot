@@ -1,5 +1,6 @@
 package com.meetup.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -19,8 +20,14 @@ public class Groupe {
     @Column(name="TITLE", nullable = true, length = 255)
     private String title;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="geid", referencedColumnName = "Groupe_Id" )
+
+    @ManyToOne
+    @JoinColumn(name = "genre_id")
+    private Genre genre;
+
+
+    @OneToMany(mappedBy = "groupe")
+    @JsonIgnore
     private List<Events> evt;
 
     public Groupe() {}
@@ -54,5 +61,13 @@ public class Groupe {
 
     public void setEvt(List<Events> evt) {
         this.evt = evt;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 }

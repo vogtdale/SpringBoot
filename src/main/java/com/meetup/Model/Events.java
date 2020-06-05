@@ -28,6 +28,14 @@ public class Events {
     @Temporal(TemporalType.DATE)
     Date date;
 
+    @ManyToOne
+    @JoinColumn(name = "pid")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "gid")
+    private Groupe groupe;
+
 
 
     public Events() {}
@@ -80,5 +88,19 @@ public class Events {
         this.date = date;
     }
 
+    public User getUser() {
+        return user;
+    }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Groupe getGroupe() {
+        return groupe;
+    }
+
+    public void setGroupe(Groupe groupe) {
+        this.groupe = groupe;
+    }
 }

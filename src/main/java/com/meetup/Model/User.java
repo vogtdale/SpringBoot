@@ -40,7 +40,6 @@ public class User {
     @Email
     private String email;
 
-
     @Size(max = 1)
     private String gender;
 
@@ -50,16 +49,16 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    @JsonIgnore
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_groupe",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "groupe_id"))
     private List<Groupe> groupe;
 
+
+    @OneToMany(mappedBy = "user")
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "peid", referencedColumnName = "ID")
     private List<Events> events;
 
     public User() {
