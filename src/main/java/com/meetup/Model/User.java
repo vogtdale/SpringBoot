@@ -12,7 +12,7 @@ import javax.validation.constraints.*;
 @Table(name = "users",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = "username"),
-                /*@UniqueConstraint(columnNames = "email")*/
+                @UniqueConstraint(columnNames = "email")
 })
 
 public class User {
@@ -35,8 +35,7 @@ public class User {
     private String surname;
 
 
-
-    @Email
+    @Size(max = 50)
     private String email;
 
 
@@ -69,6 +68,7 @@ public class User {
     }
 
     public User(String username, String surname, String email, String gender, String password) {
+        this.id = id;
         this.username = username;
         this.surname = surname;
         this.email = email;
